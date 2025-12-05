@@ -20,8 +20,8 @@
                         class="absolute bottom-0 right-0 w-5 h-5 object-cover rounded-full border border-base-100 shadow" />
                 </div>
 
-                <!-- *Status (Not implemented) -->
-                <div class="hidden flex items-center justify-center gap-1 my-1 -mt-3">
+                <!-- Status -->
+                <div class="flex items-center justify-center gap-1 my-1 -mt-3">
                     <div
                         class="h-1.5 w-1.5 rounded-full {{ $status == 'Online' ? 'bg-green-600' : ($status == 'Idle' ? 'bg-yellow-500' : 'bg-gray-500') }}">
                     </div>
@@ -76,3 +76,8 @@
         </button>
     </div>
 </section>
+<script>
+    window.addEventListener('status-updated', (event) => {
+        Livewire.dispatchTo('UserItem','updateStatus', event.detail);
+    });
+</script>

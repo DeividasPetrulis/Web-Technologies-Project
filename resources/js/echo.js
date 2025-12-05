@@ -14,15 +14,27 @@ window.Echo = new Echo({
     enabledTransports: ["ws", "wss"],
 });
 
+window.UserStatus = {
+    users: {},
 
-// User status channel
+    updateUI() {
+        window.dispatchEvent(
+            new CustomEvent("status-updated", { detail: this.users })
+        );
+        console.log(this.users);
+    }
+};
+
 window.Echo.join('status')
-    .here(users => {
-        console.log('Online users:', users);
+    .here((users) => {
+        users.forEach(u => UserStatus.users[u.id] = 'Online');
+        UserStatus.updateUI();
     })
-    .joining(user => {
-        console.log(user.name + ' joined');
+    .joining((user) => {
+        UserStatus.users[user.id] = 'Online';
+        UserStatus.updateUI();
     })
-    .leaving(user => {
-        console.log(user.name + ' left');
+    .leaving((user) => {
+        UserStatus.users[user.id] = 'Offline';
+        UserStatus.updateUI();
     });
