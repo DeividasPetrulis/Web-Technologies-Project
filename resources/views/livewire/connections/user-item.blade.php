@@ -20,6 +20,7 @@
                         class="absolute bottom-0 right-0 w-5 h-5 object-cover rounded-full border border-base-100 shadow" />
                 </div>
 
+                @auth
                 <!-- Status -->
                 <div class="flex items-center justify-center gap-1 my-1 -mt-3">
                     <div
@@ -27,6 +28,7 @@
                     </div>
                     <p class="font-normal text-xs text-gray-500 dark:text-gray-200/90">{{ $status }}</p>
                 </div>
+                @endauth
             </div>
 
             <!-- User Information -->

@@ -24,11 +24,14 @@
                         <h1 class="text-3xl font-bold text-base-content">
                             {{ $user->name }}
                         </h1>
+
+                        @auth
                         <!-- Status -->
                         <div id="user-status-{{ $user->id }}" class="flex items-center gap-1">
                             <div class="h-2 w-2 rounded-full bg-gray-500 status-dot"></div>
                             <span class="text-sm text-gray-500 dark:text-gray-200/90 status-text">Offline</span>
                         </div>
+                        @endauth
                     </div>
                     <div class="flex items-center gap-2 mt-2 text-base-content/70">
                         <x-tabler-mail class="w-4 h-4" />
